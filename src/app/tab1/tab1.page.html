@@ -21,7 +21,10 @@
   <ion-list>
     <ng-container *ngIf="todoList.length">
       <ion-item *ngFor="let todo of todoList">
-        <ion-label>{{todo.name}}</ion-label>
+        <ion-label class="ion-text-wrap">
+          <p>Nombre: {{todo.name}}</p> 
+          <p>Caducidad: {{todo.dueDate | date: 'YYYY-mm-dd hh: mm'}}</p>
+        </ion-label>
         <ion-button size="small" slot="end" (click)="removeTodo(todo)">Eliminar</ion-button>
       </ion-item>
     </ng-container>
@@ -54,7 +57,7 @@
             [(ngModel)]="currentTodo.name"
           ></ion-input>
         </ion-item>
-        <ion-item-divider>
+        <ion-item-divider class="ion-padding-top">
           Seleccione la fecha de caducidad de la tarea
         </ion-item-divider>
         <ion-item>

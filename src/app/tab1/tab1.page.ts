@@ -53,7 +53,7 @@ export class Tab1Page {
   }
 
   removeTodo(todo: Todo) {
-    const idx = this.todoList.findIndex(row => row.name == todo.name);
+    const idx = this.todoList.findIndex(row => row.createDate == todo.createDate);
     if(idx != -1) {
       this.todoList.splice(idx, 1);
       this.todoService.setTodoListLocalStorage(this.todoList);

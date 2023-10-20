@@ -31,7 +31,6 @@ export class Todo {
     }
 
     set dueDate(value: Date | string) {
-        console.log(value)
         this._dueDate =  typeof value == 'string' ? new Date(value) : value; 
     }
 }
