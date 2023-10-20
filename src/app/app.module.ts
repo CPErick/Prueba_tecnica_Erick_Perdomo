@@ -6,6 +6,8 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { TodoListPage } from './todo-list/todo-list.page';
+import { TodoListPageModule } from './todo-list/todo-list.module';
 
 @NgModule({
   declarations: [AppComponent],

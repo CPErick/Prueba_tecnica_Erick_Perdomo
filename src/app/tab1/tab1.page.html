@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 1
+      TODO List
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,9 +9,58 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
+      <ion-title size="large">TODO List</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <ion-toolbar>
+    <ion-item>
+      <ion-button class="ion-text-capitalize" (click)="isModalOpen = true">Crear TODO</ion-button>
+    </ion-item>
+  </ion-toolbar>
+  <ion-list>
+    <ng-container *ngIf="todoList.length">
+      <ion-item *ngFor="let todo of todoList">
+        <ion-label>{{todo.name}}</ion-label>
+        <ion-button size="small" slot="end" (click)="removeTodo(todo)">Eliminar</ion-button>
+      </ion-item>
+    </ng-container>
+    <ng-container *ngIf="!todoList.length">
+      <ion-item>
+        <ion-note>Aun no ha agregado tareas  a su lista.</ion-note>
+      </ion-item>  
+    </ng-container>
+  </ion-list>
+  <ion-modal  [isOpen]="isModalOpen">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button (click)="cancel()">Cancel</ion-button>
+          </ion-buttons>
+          <ion-title>Nuevo Todo</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="createTodo()" [strong]="true">Confirm</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <ion-item>
+          <ion-input
+            label="Nombre de la tarea"
+            labelPlacement="stacked"
+            type="text"
+            placeholder="Escriba el nombre de la tarea"
+            [(ngModel)]="currentTodo.name"
+          ></ion-input>
+        </ion-item>
+        <ion-item-divider>
+          Seleccione la fecha de caducidad de la tarea
+        </ion-item-divider>
+        <ion-item>
+          <ion-datetime id="datetime" [(ngModel)]="dueDate"></ion-datetime>
+        </ion-item>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 </ion-content>
